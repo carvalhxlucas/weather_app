@@ -4,7 +4,7 @@ import 'package:minimal_weather_app/services/weather_services.dart';
 
 import '../models/weather_model.dart';
 
-class WeatherPage extends StatefulWidget{
+class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
 
   @override
@@ -37,7 +37,7 @@ class _WeatherPageState extends State<WeatherPage> {
 
   //weather animations
   String getWeatherAnimation(String? mainCondition) {
-    if (mainCondition == null) return 'assets/sunny.json';// default sunny
+    if (mainCondition == null) return 'assets/sunny.json'; // default sunny
 
     switch (mainCondition.toLowerCase()) {
       case 'clouds':
@@ -66,29 +66,40 @@ class _WeatherPageState extends State<WeatherPage> {
     _fetchWeather();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // city name
-            Text(_weather?.cityName ?? "loading city..."),
-            
-            // animation
-            Lottie.asset(getWeatherAnimation(_weather?.mainCondition)),
+        backgroundColor: Colors.blueGrey,
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // city name
+              Text(
+                _weather?.cityName ?? "loading city...",
+                style: const TextStyle(
+                    fontFamily: 'Heavitas', fontSize: 25, color: Colors.white, letterSpacing: 1.0),
+              ),
 
-            // temperature
-            Text('${_weather?.temperature?.round() ?? "loading temperature"}ºC'),
+              // animation
+              Lottie.asset(getWeatherAnimation(_weather?.mainCondition)),
 
-            // weather condition
-            Text(_weather?.mainCondition ?? ""),
-          ],
-        ),
-      )
-    );
+              // temperature
+              Text(
+                '${_weather?.temperature?.round() ?? "loading temperature"}ºC',
+                style: const TextStyle(
+                    fontFamily: 'Heavitas', fontSize: 25, color: Colors.white, letterSpacing: 1.0),
+              ),
+              Text(' '),
+
+              // weather condition
+              Text(
+                _weather?.mainCondition ?? "",
+                style: const TextStyle(
+                    fontFamily: 'Heavitas', fontSize: 25, color: Colors.white),
+              ),
+            ],
+          ),
+        ));
   }
 }
-

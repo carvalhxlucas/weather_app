@@ -14,7 +14,7 @@ class WeatherService {
 
   Future<Weather> getWeather(String cityName) async{
     final response = await http
-        .get(Uri.parse('https://api.openweathermap.org/data/2.5/weather?lat=48.501&lon=27.615&appid=1fae7e3583c3e393d126be8868e1d068&units=metric'));
+        .get(Uri.parse('https://api.openweathermap.org/data/2.5/weather?lat=-27.5973002&lon=-48.5496098&appid=1fae7e3583c3e393d126be8868e1d068&units=metric'));
 
     if (response.statusCode == 200) {
       return Weather.fromJson(jsonDecode(response.body));
